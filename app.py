@@ -15,7 +15,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# ---------------------- Sidebar ---------------------- #
+# Sidebar
 st.sidebar.title("🧪 Test Settings")
 
 audio_duration = st.sidebar.number_input(
@@ -29,7 +29,7 @@ audio_duration = st.sidebar.number_input(
 
 show_raw_json = st.sidebar.checkbox("Show raw JSON output", value=False)
 
-# ---------------------- Main layout ---------------------- #
+#  Main layout 
 st.title("🗣️ AI Communication Coach – Self-Introduction Scorer")
 
 st.write("### Transcript Input")
@@ -93,7 +93,7 @@ if score_btn:
         criteria = result.get("criteria_scores", {})
         feedback = result.get("feedback", {})
 
-        # --------- Top-level KPIs --------- #
+        # Top-level KPIs
         kpi1, kpi2 = st.columns(2)
         with kpi1:
             st.metric("Overall Score (0–100)", f"{overall_score:.1f}")
@@ -103,7 +103,7 @@ if score_btn:
 
         st.markdown("---")
 
-        # --------- Per-criterion breakdown --------- #
+        # Per-criterion breakdown 
         # Build a DataFrame for visuals
         rows = []
         for crit_key, crit_val in criteria.items():
@@ -146,7 +146,7 @@ if score_btn:
                 use_container_width=True,
             )
 
-        # --------- Radar chart for quick profile --------- #
+        # Radar chart for quick profile
         st.subheader("📈 Skill Profile (Radar)")
 
         radar_df = df_scores.copy()
@@ -164,7 +164,7 @@ if score_btn:
 
         st.markdown("---")
 
-        # --------- Detailed feedback by section --------- #
+        # Detailed feedback by section
         st.subheader("🩺 Detailed Rubric Feedback")
 
         # Content & Structure
@@ -240,7 +240,7 @@ if score_btn:
                 f"- Compound score: `{eng_det.get('compound', 0.0):.2f}`"
             )
 
-        # --------- Raw JSON (optional) --------- #
+        # Raw JSON (optional)
         if show_raw_json:
             st.markdown("---")
             st.subheader("🧾 Raw JSON Output")
