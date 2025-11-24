@@ -1,9 +1,3 @@
-"""
-logic.py - Scoring engine for AI Communication Coach (Self-introduction rubric)
-
-Implements the rubric defined in the provided case-study spreadsheet.
-"""
-
 from __future__ import annotations
 
 import re
@@ -31,10 +25,6 @@ try:
 except ImportError:  # pragma: no cover
     language_tool_python = None  # type: ignore
 
-
-# ---------------------------------------------------------------------------
-# Optional helper to install dependencies (to be run in your environment)
-# ---------------------------------------------------------------------------
 
 def install_dependencies():
     """
@@ -68,10 +58,6 @@ def install_dependencies():
         # If it fails (no internet, etc.), spaCy will fall back to a blank model.
         pass
 
-
-# ---------------------------------------------------------------------------
-# Global, lazily initialised NLP objects
-# ---------------------------------------------------------------------------
 
 _NLP = None
 _ST_MODEL = None
@@ -122,11 +108,7 @@ def get_language_tool():
         _LT_TOOL = language_tool_python.LanguageTool("en-US")
     return _LT_TOOL
 
-
-# ---------------------------------------------------------------------------
 # Utility / preprocessing helpers
-# ---------------------------------------------------------------------------
-
 def normalize_text(text: str) -> str:
     """Collapse extra whitespace and strip."""
     return " ".join((text or "").strip().split())
@@ -166,9 +148,7 @@ def count_words(text: str) -> int:
     return len(tokenize_words(text))
 
 
-# ---------------------------------------------------------------------------
 # Content & Structure scoring
-# ---------------------------------------------------------------------------
 
 SALUTATION_NORMAL = ["hi", "hello"]
 SALUTATION_GOOD = [
@@ -384,9 +364,7 @@ def score_flow(text: str) -> Tuple[int, Dict[str, Any]]:
     }
 
 
-# ---------------------------------------------------------------------------
 # Speech rate scoring
-# ---------------------------------------------------------------------------
 
 def compute_wpm(word_count: int, audio_duration_seconds: float) -> float:
     """Compute words per minute from word count and audio duration."""
@@ -424,9 +402,7 @@ def score_speech_rate(wpm: float) -> Tuple[int, Dict[str, Any]]:
     return score, {"band": band, "wpm": wpm}
 
 
-# ---------------------------------------------------------------------------
 # Language & Grammar scoring
-# ---------------------------------------------------------------------------
 
 def analyze_grammar(text: str, total_words: int) -> Tuple[int, float, List[Dict[str, Any]]]:
     """
@@ -515,9 +491,7 @@ def score_vocabulary_ttr(words: List[str]) -> Tuple[int, float]:
     return score, ttr
 
 
-# ---------------------------------------------------------------------------
 # Clarity scoring (filler words)
-# ---------------------------------------------------------------------------
 
 FILLER_WORDS = ["um", "uh", "like", "you know", "actually", "basically"]
 
@@ -572,9 +546,7 @@ def score_clarity_filler(text: str, words: List[str]) -> Tuple[int, Dict[str, An
     }
 
 
-# ---------------------------------------------------------------------------
 # Engagement scoring (VADER sentiment)
-# ---------------------------------------------------------------------------
 
 def score_engagement(text: str) -> Tuple[int, Dict[str, Any]]:
     """
@@ -613,11 +585,7 @@ def score_engagement(text: str) -> Tuple[int, Dict[str, Any]]:
 
     return score, {"positive": positive, "compound": compound}
 
-
-# ---------------------------------------------------------------------------
 # Main analysis function
-# ---------------------------------------------------------------------------
-
 def analyze_transcript(transcript_text: str, audio_duration_seconds: float) -> Dict[str, Any]:
     """
     Analyze a self-introduction transcript according to the provided rubric.
