@@ -1,0 +1,9 @@
+streamlit
+pandas
+plotly
+spacy
+sentence-transformers
+vaderSentiment
+language-tool-python
+python-docx
+PyPDF2
