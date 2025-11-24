@@ -52,4 +52,57 @@ This project is built for
 ---
 
 ## 🏗️ System Architecture
++-------------+ +------------------+ +------------------------+
+| Web Frontend| -----> | Scoring Backend | -----> | Visualization & Output |
+| (Streamlit) | | (Python + NLP) | | Score + Feedback |
++-------------+ +------------------+ +------------------------+
+|
+v
+Sentence Transformers + NLP
+
+---
+
+## 📊 Rubric Scoring Breakdown
+
+| Criterion | Max Points | Method |
+|----------|------------|--------|
+| Content & Structure | 40 | Keyword detection + flow scoring |
+| Speech Rate | 10 | WPM calculation |
+| Language & Grammar | 20 | Grammar + vocabulary richness |
+| Clarity | 15 | Filler word frequency |
+| Engagement | 15 | Sentiment positivity (VADER) |
+
+Final Score = Weighted sum mapped to **0–100**
+
+---
+
+## 🧪 How it Works — Scoring Flow
+
+Upload/Paste Transcript
+↓
+Preprocessing (tokenize, normalize)
+↓
+Rule-based checks (keywords, order, filler words)
+↓
+NLP checks (semantic similarity, sentiment)
+↓
+Rubric-weighted aggregation (Content, Speed…)
+↓
+Dashboard & Feedback
+
+
+---
+
+## 🚀 Try it Locally
+
+```bash
+git clone https://github.com/Subodhkhanduri/ai-self-intro-scorer.git
+cd ai-self-intro-scorer
+
+python -m venv venv
+venv\Scripts\activate  # Windows
+
+pip install -r requirements.txt
+
+streamlit run app.py
 
