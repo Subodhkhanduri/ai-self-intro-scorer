@@ -51,34 +51,6 @@ This project is built for
 
 ---
 
-## 🏗️ System Architecture
-
-User Input (Transcript/PDF/DOCX)
-              │
-              ▼
-+----------------------------------------+
-|  Web Application (Streamlit Frontend) |
-+----------------------------------------+
-              │
-              ▼
-+----------------------------------------+
-| Scoring Engine (Python + NLP Backend) |
-| - Keyword Detection                   |
-| - Grammar & Vocabulary Assessment     |
-| - Speech Rate Calculation             |
-| - Sentiment Analysis                  |
-+----------------------------------------+
-              │
-              ▼
-+----------------------------------------+
-| Visualization & Feedback Layer        |
-| - Score Summary                       |
-| - Radar & Bar Charts                  |
-| - Detailed Recommendations            |
-+----------------------------------------+
-
----
-
 ## 📊 Rubric Scoring Breakdown
 
 | Criterion | Max Points | Method |
